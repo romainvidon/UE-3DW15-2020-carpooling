@@ -12,7 +12,7 @@ class DataBaseService
     const PORT = '3306';
     const DATABASE_NAME = 'carpooling';
     const MYSQL_USER = 'root';
-    const MYSQL_PASSWORD = 'password';
+    const MYSQL_PASSWORD = '';
 
     private $connection;
 
@@ -41,7 +41,7 @@ class DataBaseService
             'firstname' => $firstname,
             'lastname' => $lastname,
             'email' => $email,
-            'birthday' => $birthday->format(DateTime::RFC3339),
+            'birthday' => $birthday->format("Y-m-d"),
         ];
         $sql = 'INSERT INTO users (firstname, lastname, email, birthday) VALUES (:firstname, :lastname, :email, :birthday)';
         $query = $this->connection->prepare($sql);
