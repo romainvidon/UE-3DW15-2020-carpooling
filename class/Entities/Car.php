@@ -7,7 +7,14 @@ class Car
     private $id;
     private $model;
     private $user_id;
-
+    
+    /**
+     * Get the value of id
+     */ 
+    public function getId()
+    {
+        return $this->id;
+    }
     /**
      * Set the value of id
      *
@@ -43,7 +50,7 @@ class Car
     /**
      * Get the value of user_id
      */
-    public function getUser_id()
+    public function getUserId()
     {
         return $this->user_id;
     }
@@ -53,10 +60,12 @@ class Car
      *
      * @return  self
      */
-    public function setUser_id($user_id)
+    public function setUserId($user_id)
     {
         $this->user_id = $user_id;
 
         return $this;
     }
+
+
 }
