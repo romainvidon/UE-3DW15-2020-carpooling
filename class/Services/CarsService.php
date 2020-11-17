@@ -9,7 +9,7 @@ class CarsService
     /**
      * Create or update a car.
      */
-    public function setCar(?string $id, string $model, $user_id): bool
+    public function setCar(?string $id, string $model, string $user_id): bool
     {
         $isOk = false;
 
@@ -44,5 +44,4 @@ class CarsService
 
         return $cars;
     }
-
 }

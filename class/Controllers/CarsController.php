@@ -16,7 +16,7 @@ class CarsController
         // If the form have been submitted :
         if (isset($_POST['model']) &&
             isset($_POST['user_id'])) {
-            // Create the user :
+            // Create the car :
             $carsService = new CarsService();
             $isOk = $carsService->setCar(
                 null,
@@ -40,7 +40,7 @@ class CarsController
     {
         $html = '';
 
-        // Get all users :
+        // Get all cars :
         $carsService = new CarsService();
         $cars = $carsService->getCars();
 

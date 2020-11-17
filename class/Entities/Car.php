@@ -10,7 +10,7 @@ class Car
     
     /**
      * Get the value of id
-     */ 
+     */
     public function getId()
     {
         return $this->id;
@@ -66,6 +66,4 @@ class Car
 
         return $this;
     }
-
-
 }
