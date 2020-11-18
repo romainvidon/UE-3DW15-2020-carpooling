@@ -105,8 +105,79 @@ class DataBaseService
         return $isOk;
     }
 
+    /**
+     * Create a car.
+     */
+    public function createCar(string $model, string $user_id): bool
+    {
+        $isOk = false;
 
-    /*==================================================*/
+        $data = [
+            'model' => $model,
+            'user_id' => $user_id
+        ];
+        $sql = 'INSERT INTO cars(model, user_id) VALUES (:model, :user_id)';
+        $query = $this->connection->prepare($sql);
+        $isOk = $query->execute($data);
+
+        return $isOk;
+    }
+    
+    /**
+     * Return all cars.
+     */
+    public function getCars(): array
+    {
+        $cars = [];
+
+        $sql = 'SELECT * FROM cars';
+        $query = $this->connection->query($sql);
+        $results = $query->fetchAll(PDO::FETCH_ASSOC);
+        if (!empty($results)) {
+            $cars = $results;
+        }
+
+        return $cars;
+    }
+
+    /**
+     * Create an ad.
+     */
+    public function createAd(string $title, string $description, string $user_id, string $car_id): bool
+    {
+        $isOk = false;
+
+        $data = [
+            'title' => $title,
+            'description' => $description,
+            'car_id' => $car_id,
+            'user_id' => $user_id
+        ];
+        $sql = 'INSERT INTO ads(title, description, user_id, car_id) VALUES (:title, :description, :car_id, :user_id)';
+        $query = $this->connection->prepare($sql);
+        $isOk = $query->execute($data);
+
+        return $isOk;
+    }
+
+    /**
+     * Return all cars.
+     */
+    public function getAds(): array
+    {
+        $ads = [];
+
+        $sql = 'SELECT * FROM ads';
+        $query = $this->connection->query($sql);
+        $results = $query->fetchAll(PDO::FETCH_ASSOC);
+        if (!empty($results)) {
+            $ads = $results;
+        }
+
+        return $ads;
+    }
+
+/*==================================================*/
 
 
     /**

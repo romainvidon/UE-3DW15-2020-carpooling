@@ -2,35 +2,31 @@
 
 namespace App\Controllers;
 
-use App\Services\UsersService;
+use App\Services\CarsService;
 
-class UsersController
+class CarsController
 {
     /**
      * Return the html for the create action.
      */
-    public function createUser(): string
+    public function createCar(): string
     {
         $html = '';
 
         // If the form have been submitted :
-        if (isset($_POST['firstname']) &&
-            isset($_POST['lastname']) &&
-            isset($_POST['email']) &&
-            isset($_POST['birthday'])) {
-            // Create the user :
-            $usersService = new UsersService();
-            $isOk = $usersService->setUser(
+        if (isset($_POST['model']) &&
+            isset($_POST['user_id'])) {
+            // Create the car :
+            $carsService = new CarsService();
+            $isOk = $carsService->setCar(
                 null,
-                $_POST['firstname'],
-                $_POST['lastname'],
-                $_POST['email'],
-                $_POST['birthday']
+                $_POST['model'],
+                $_POST['user_id']
             );
             if ($isOk) {
-                $html = 'Utilisateur créé avec succès.';
+                $html = 'Voiture créée avec succès.';
             } else {
-                $html = 'Erreur lors de la création de l\'utilisateur.';
+                $html = 'Erreur lors de la création de la voiture.';
             }
         }
 
@@ -40,22 +36,20 @@ class UsersController
     /**
      * Return the html for the read action.
      */
-    public function getUsers(): string
+    public function getCars(): string
     {
         $html = '';
 
-        // Get all users :
-        $usersService = new UsersService();
-        $users = $usersService->getUsers();
+        // Get all cars :
+        $carsService = new CarsService();
+        $cars = $carsService->getCars();
 
         // Get html :
-        foreach ($users as $user) {
+        foreach ($cars as $car) {
             $html .=
-                '#' . $user->getId() . ' ' .
-                $user->getFirstname() . ' ' .
-                $user->getLastname() . ' ' .
-                $user->getEmail() . ' ' .
-                $user->getBirthday()->format('d-m-Y') . '<br />';
+                '#' . $car->getId() . ' ' .
+                $car->getModel() . ' ' .
+                $car->getUserId() . '<br />';
         }
 
         return $html;
@@ -64,8 +58,10 @@ class UsersController
     /**
      * Update the user.
      */
-    public function updateUser(): string
+    public function updateCar(): string
     {
+
+        // TODO : cars
         $html = '';
 
         // If the form have been submitted :
@@ -98,6 +94,7 @@ class UsersController
      */
     public function deleteUser(): string
     {
+        // TODO : cars
         $html = '';
 
         // If the form have been submitted :

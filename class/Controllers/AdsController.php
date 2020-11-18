@@ -2,35 +2,35 @@
 
 namespace App\Controllers;
 
-use App\Services\UsersService;
+use App\Services\AdsService;
 
-class UsersController
+class AdsController
 {
     /**
      * Return the html for the create action.
      */
-    public function createUser(): string
+    public function createAd(): string
     {
         $html = '';
 
         // If the form have been submitted :
-        if (isset($_POST['firstname']) &&
-            isset($_POST['lastname']) &&
-            isset($_POST['email']) &&
-            isset($_POST['birthday'])) {
-            // Create the user :
-            $usersService = new UsersService();
-            $isOk = $usersService->setUser(
+        if (isset($_POST['title']) &&
+            isset($_POST['description']) &&
+            isset($_POST['user_id']) &&
+            isset($_POST['car_id'])) {
+            // Create the ad :
+            $adsService = new AdsService();
+            $isOk = $adsService->setAd(
                 null,
-                $_POST['firstname'],
-                $_POST['lastname'],
-                $_POST['email'],
-                $_POST['birthday']
+                $_POST['title'],
+                $_POST['description'],
+                $_POST['user_id'],
+                $_POST['car_id']
             );
             if ($isOk) {
-                $html = 'Utilisateur créé avec succès.';
+                $html = 'Annonce créée avec succès.';
             } else {
-                $html = 'Erreur lors de la création de l\'utilisateur.';
+                $html = 'Erreur lors de la création de l\'annonce.';
             }
         }
 
@@ -40,22 +40,22 @@ class UsersController
     /**
      * Return the html for the read action.
      */
-    public function getUsers(): string
+    public function getAds(): string
     {
         $html = '';
 
-        // Get all users :
-        $usersService = new UsersService();
-        $users = $usersService->getUsers();
+        // Get all ads :
+        $adsService = new AdsService();
+        $ads = $adsService->getAds();
 
         // Get html :
-        foreach ($users as $user) {
+        foreach ($ads as $ad) {
             $html .=
-                '#' . $user->getId() . ' ' .
-                $user->getFirstname() . ' ' .
-                $user->getLastname() . ' ' .
-                $user->getEmail() . ' ' .
-                $user->getBirthday()->format('d-m-Y') . '<br />';
+                '#' . $ad->getId() . ' ' .
+                $ad->getTitle() . ' ' .
+                $ad->getDescription() . ' ' .
+                $ad->getUserId() . ' ' .
+                $ad->getCarId() . '<br />';
         }
 
         return $html;
@@ -64,8 +64,10 @@ class UsersController
     /**
      * Update the user.
      */
-    public function updateUser(): string
+    public function updateCar(): string
     {
+
+        // TODO : ads
         $html = '';
 
         // If the form have been submitted :
@@ -98,6 +100,7 @@ class UsersController
      */
     public function deleteUser(): string
     {
+        // TODO : ads
         $html = '';
 
         // If the form have been submitted :

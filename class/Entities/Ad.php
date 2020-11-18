@@ -10,8 +10,6 @@ class Ad
     private $user_id;
     private $car_id;
 
-    
-
     /**
      * Get the value of id
      */
@@ -75,7 +73,7 @@ class Ad
     /**
      * Get the value of user_id
      */
-    public function getUser_id()
+    public function getUserId()
     {
         return $this->user_id;
     }
@@ -85,7 +83,7 @@ class Ad
      *
      * @return  self
      */
-    public function setUser_id($user_id)
+    public function setUserId($user_id)
     {
         $this->user_id = $user_id;
 
@@ -95,7 +93,7 @@ class Ad
     /**
      * Get the value of car_id
      */
-    public function getCar_id()
+    public function getCarId()
     {
         return $this->car_id;
     }
@@ -105,7 +103,7 @@ class Ad
      *
      * @return  self
      */
-    public function setCar_id($car_id)
+    public function setCarId($car_id)
     {
         $this->car_id = $car_id;
 
