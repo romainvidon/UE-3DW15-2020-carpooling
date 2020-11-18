@@ -104,4 +104,82 @@ class DataBaseService
 
         return $isOk;
     }
+
+
+    /*==================================================*/
+
+
+    /**
+     * Create a booking.
+     */
+    public function createBooking(DateTime $reservationdate, string $user_id, string $add_id): bool
+    {
+        $isOk = false;
+
+        $data = [
+            'reservationdate' => $reservationdate->format("Y-m-d H:i"),
+            'userId' => $user_id,
+            'addId' => $add_id,
+        ];
+        $sql = 'INSERT INTO bookings (reservationdate, user_id, ad_Id) VALUES (:reservationdate, :userId, :addId)';
+        $query = $this->connection->prepare($sql);
+        $isOk = $query->execute($data);
+
+        return $isOk;
+    }
+
+    /**
+     * Return all bookings.
+     */
+    public function getBookings(): array
+    {
+        $bookings = [];
+
+        $sql = 'SELECT * FROM bookings';
+        $query = $this->connection->query($sql);
+        $results = $query->fetchAll(PDO::FETCH_ASSOC);
+        if (!empty($results)) {
+            $bookings = $results;
+        }
+
+        return $bookings;
+    }
+
+    /**
+     * Update a booking.
+     */
+    public function updateBooking(int $id, DateTime $reservationdate, int $user_id, int $add_id): bool
+    {
+        $isOk = false;
+
+        $data = [
+            'id' => $id,
+            'reservationdate' => $reservationdate->format("Y-m-d H:i"),
+            'userId' => $user_id,
+            'addId' => $add_id,
+        ];
+        $sql = 'UPDATE bookings SET reservationdate = :reservationdate, userId = :userId, addId = :addId WHERE id = :id;';
+        $query = $this->connection->prepare($sql);
+        $isOk = $query->execute($data);
+
+        return $isOk;
+    }
+
+    /**
+     * Delete a booking.
+     */
+    public function deleteBooking(int $id): bool
+    {
+        $isOk = false;
+
+        $data = [
+            'id' => $id,
+        ];
+        $sql = 'DELETE FROM bookings WHERE id = :id;';
+        $query = $this->connection->prepare($sql);
+        $isOk = $query->execute($data);
+
+        return $isOk;
+    }
+
 }
