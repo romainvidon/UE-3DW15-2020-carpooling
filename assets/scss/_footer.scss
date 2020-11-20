@@ -1,0 +1,13 @@
+/* Footer styles */
+footer {
+    background-color: $light-gray;
+    color: $dark-gray;
+    font-size: 0.75rem;
+    a {
+        color: $dark-gray;
+        text-decoration: underline;
+        &:hover, &:focus {
+            color: darken($dark-gray, 8%);
+        }
+    }
+}

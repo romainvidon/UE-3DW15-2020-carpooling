@@ -17,7 +17,7 @@ class AdsService
         if (empty($id)) {
             $isOk = $dataBaseService->createAd($title, $description, $user_id, $car_id);
         } else {
-            //* TODO : update an ad
+            $isOk = $dataBaseService->updateAd($id, $title, $description, $user_id, $car_id);
         }
 
         return $isOk;
@@ -26,7 +26,7 @@ class AdsService
     /**
      * Return all ads.
      */
-    public function getAds(): array
+    public function getAds()
     {
         $ads = [];
 
@@ -46,4 +46,42 @@ class AdsService
 
         return $ads;
     }
+
+    /*
+     * Return the Ad Ids
+     
+
+    public function getAdIds(): array
+    {
+        $adIds = [];
+
+        $dataBaseService = new DataBaseService();
+        $adIdsDTO = $dataBaseService->getAdIds();
+        if (!empty($adIdsDTO)) {
+            foreach ($adIdsDTO as $adIdDTO) {
+                $ad = new Ad();
+                $ad->getId($adIdDTO['id']);
+                $adIds[] = $ad;
+            }
+        }
+        var_dump($adIds); die();
+        return $adIds;
+    }*/
+     
+
+
+    /**
+     * Delete an ad.
+     */
+    public function deleteAd(string $id): bool
+    {
+        $isOk = false;
+
+        $dataBaseService = new DataBaseService();
+        $isOk = $dataBaseService->deleteAdObligations($id);
+        $isOk = $dataBaseService->deleteAd($id);
+
+        return $isOk;
+    }
+
 }

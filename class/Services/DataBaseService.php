@@ -161,7 +161,85 @@ class DataBaseService
     }
 
     /**
-     * Return all ads.
+     * Update an ad.
+     */
+    public function updateAd(string $id, string $title, string $description, string $user_id, string $car_id): bool
+    {
+        $isOk = false;
+
+        $data = [
+            'id' => $id,
+            'title' => $title,
+            'description' => $description,
+            'car_id' => $car_id,
+            'user_id' => $user_id
+        ];
+
+        $sql = 'UPDATE ads SET title = :title, description = :description, car_id = :car_id, user_id = :user_id WHERE id = :id;';
+        $query = $this->connection->prepare($sql);
+        $isOk = $query->execute($data);
+
+        return $isOk;
+    }
+
+    /**
+     * Delete an ad.
+     */
+    public function deleteAd(string $id): bool
+    {
+        $isOk = false;
+
+        $data = [
+            'id' => $id,
+        ];
+        
+        $sql = 'DELETE FROM ads WHERE id = :id;';
+        $query = $this->connection->prepare($sql);
+        $isOk = $query->execute($data);
+        
+
+        return $isOk;
+    }
+
+    /**
+     * Delete obligations from an ad (bookings and reservations)
+     */
+    public function deleteAdObligations(string $adId): bool
+    {
+        $isOk = false;
+
+        $data = [
+            'ad_id' => $adId
+        ];
+
+        $sql = 'DELETE * FROM bookings, reservations WHERE ad_id = :adId;';
+        $query = $this->connection->prepare($sql);
+        $isOk = $query->execute($data);
+
+        return $isOk;
+    }
+
+    /*
+      Select Ad Ids
+     
+
+     public function getAdIds(): array
+     {
+         $adIds = [];
+         $sql = 'SELECT id FROM ads';
+         $query = $this-	>connection->query($sql);
+         $results = $query->fetchAll(PDO::FETCH_ASSOC);
+         if (!empty($results)){
+            $adIds = $results;
+         }
+        
+         return $adIds;
+         
+     }
+     */
+
+    /**
+     * Return all cars.
      */
     public function getAds(): array
     {
@@ -177,7 +255,7 @@ class DataBaseService
         return $ads;
     }
 
-    /*==================================================*/
+/*==================================================*/
 
 
     /**
