@@ -1,0 +1,15 @@
+@import 'variables';
+
+/* Global styles */
+body {
+    a {
+        text-decoration: underline;
+    }
+    h1 {
+        color: $dark-gray;
+    }
+}
+
+.gray {
+    color: $gray;
+}

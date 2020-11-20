@@ -9,9 +9,9 @@ class AdsController
     /**
      * Return the html for the create action.
      */
-    public function createAd(): string
+    public function createAd(): array
     {
-        $html = '';
+        $result = [];
 
         // If the form have been submitted :
         if (isset($_POST['title']) &&
@@ -32,23 +32,26 @@ class AdsController
             } else {
                 $html = 'Erreur lors de la création de l\'annonce.';
             }
+
+            //for bootstrap flash message
+            $result = [$html, ($isOk ? 'success' : 'danger')];
         }
 
-        return $html;
+        return $result;
     }
 
     /**
      * Return the html for the read action.
      */
-    public function getAds(): string
+    public function getAds(): array
     {
-        $html = '';
+        /*$html = '';
 
-        // Get all ads :
+         Get all ads :
         $adsService = new AdsService();
         $ads = $adsService->getAds();
 
-        // Get html :
+         Get html :
         foreach ($ads as $ad) {
             $html .=
                 '#' . $ad->getId() . ' ' .
@@ -58,63 +61,91 @@ class AdsController
                 $ad->getCarId() . '<br />';
         }
 
-        return $html;
+        return $html;*/
+
+
+        // Get all ads :
+        $adsService = new AdsService();
+        $ads = $adsService->getAds();
+
+        return $ads;
     }
 
+    /*
+     * Get an Ad Id 
+     
+
+     public function getAdId():string
+     {
+         $id = '';
+
+         $ad = new AdsService;
+         $adId = $ad->getAdIds();
+         foreach ($adId as $id){
+             $id = $id->setAdId();
+         }
+         var_dump($id); die();
+         return $id;
+     }*/
+
     /**
-     * Update the user.
+     * Update the ad.
      */
-    public function updateCar(): string
+    public function updateAd(): array
     {
 
-        // TODO : ads
-        $html = '';
+        $result = [];
 
         // If the form have been submitted :
         if (isset($_POST['id']) &&
-            isset($_POST['firstname']) &&
-            isset($_POST['lastname']) &&
-            isset($_POST['email']) &&
-            isset($_POST['birthday'])) {
-            // Update the user :
-            $usersService = new UsersService();
-            $isOk = $usersService->setUser(
+            isset($_POST['title']) &&
+            isset($_POST['description']) &&
+            isset($_POST['user_id']) &&
+            isset($_POST['car_id'])) {
+            // Update the ad :
+            $AdsService = new AdsService();
+            $isOk = $AdsService->setAd(
                 $_POST['id'],
-                $_POST['firstname'],
-                $_POST['lastname'],
-                $_POST['email'],
-                $_POST['birthday']
+                $_POST['title'],
+                $_POST['description'],
+                $_POST['user_id'],
+                $_POST['car_id']
             );
             if ($isOk) {
-                $html = 'Utilisateur mis à jour avec succès.';
+                $html = 'Annonce mise à jour avec succès.';
             } else {
-                $html = 'Erreur lors de la mise à jour de l\'utilisateur.';
+                $html = 'Erreur lors de la mise à jour de l\'annonce.';
             }
+
+            //for bootstrap flash message
+            $result = [$html, ($isOk ? "success" : "danger")];
         }
 
-        return $html;
+        return $result;
     }
 
     /**
-     * Delete an user.
+     * Delete an ad.
      */
-    public function deleteUser(): string
+    public function deleteAd()
     {
-        // TODO : ads
-        $html = '';
+
+        $result = [];
 
         // If the form have been submitted :
         if (isset($_POST['id'])) {
-            // Delete the user :
-            $usersService = new UsersService();
-            $isOk = $usersService->deleteUser($_POST['id']);
+            // Delete the ad :
+            $adsService = new AdsService();
+            $isOk = $adsService->deleteAd($_POST['id']);
             if ($isOk) {
-                $html = 'Utilisateur supprimé avec succès.';
+                $html = 'Annonce supprimée avec succès.';
             } else {
-                $html = 'Erreur lors de la supression de l\'utilisateur.';
+                $html = 'Erreur lors de la supression de l\'annonce.';
             }
+            //for bootstrap flash message
+            $result = [$html, ($isOk ? "success" : "danger")];
         }
-
-        return $html;
+        
+        return $result;
     }
 }
