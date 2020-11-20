@@ -44,4 +44,18 @@ class CarsService
 
         return $cars;
     }
+
+
+    /**
+     * Delete a car.
+     */
+    public function deleteCar(string $id): bool
+    {
+        $isOk = false;
+
+        $dataBaseService = new DataBaseService();
+        $isOk = $dataBaseService->deleteCar($id);
+
+        return $isOk;
+    }
 }

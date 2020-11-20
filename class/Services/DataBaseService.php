@@ -161,7 +161,7 @@ class DataBaseService
     }
 
     /**
-     * Return all cars.
+     * Return all ads.
      */
     public function getAds(): array
     {
@@ -177,7 +177,7 @@ class DataBaseService
         return $ads;
     }
 
-/*==================================================*/
+    /*==================================================*/
 
 
     /**
@@ -252,5 +252,4 @@ class DataBaseService
 
         return $isOk;
     }
-
 }
