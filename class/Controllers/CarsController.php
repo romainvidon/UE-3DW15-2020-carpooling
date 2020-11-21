@@ -56,7 +56,7 @@ class CarsController
     }
 
     /**
-     * Update the user.
+     * Update a car.
      */
     public function updateCar(): string
     {
@@ -66,23 +66,19 @@ class CarsController
 
         // If the form have been submitted :
         if (isset($_POST['id']) &&
-            isset($_POST['firstname']) &&
-            isset($_POST['lastname']) &&
-            isset($_POST['email']) &&
-            isset($_POST['birthday'])) {
-            // Update the user :
-            $usersService = new UsersService();
-            $isOk = $usersService->setUser(
+            isset($_POST['model']) &&
+            isset($_POST['user_id'])) {
+            // Update the car :
+            $carsService = new CarsService();
+            $isOk = $carsService->setCar(
                 $_POST['id'],
-                $_POST['firstname'],
-                $_POST['lastname'],
-                $_POST['email'],
-                $_POST['birthday']
+                $_POST['model'],
+                $_POST['user_id']
             );
             if ($isOk) {
-                $html = 'Utilisateur mis à jour avec succès.';
+                $html = 'Voiture modifiée avec succès.';
             } else {
-                $html = 'Erreur lors de la mise à jour de l\'utilisateur.';
+                $html = 'Erreur lors de la modification de la voiture.';
             }
         }
 
@@ -90,22 +86,21 @@ class CarsController
     }
 
     /**
-     * Delete an user.
+     * Delete a car.
      */
-    public function deleteUser(): string
+    public function deleteCar(): string
     {
-        // TODO : cars
         $html = '';
 
         // If the form have been submitted :
         if (isset($_POST['id'])) {
-            // Delete the user :
-            $usersService = new UsersService();
-            $isOk = $usersService->deleteUser($_POST['id']);
+            // Delete the car :
+            $CarsService = new CarsService();
+            $isOk = $CarsService->deleteCar($_POST['id']);
             if ($isOk) {
-                $html = 'Utilisateur supprimé avec succès.';
+                $html = 'Voiture supprimé avec succès.';
             } else {
-                $html = 'Erreur lors de la supression de l\'utilisateur.';
+                $html = 'Erreur lors de la supression de la voiture.';
             }
         }
 
