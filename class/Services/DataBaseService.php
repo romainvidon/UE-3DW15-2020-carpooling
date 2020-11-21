@@ -105,6 +105,8 @@ class DataBaseService
         return $isOk;
     }
 
+    /*====================================================*/
+
     /**
      * Create a car.
      */
@@ -139,6 +141,8 @@ class DataBaseService
 
         return $cars;
     }
+
+    /*===================================================*/
 
     /**
      * Create an ad.
@@ -331,4 +335,42 @@ class DataBaseService
         return $isOk;
     }
 
+    /*======================================================*/
+
+    /**
+     * Create a comment.
+     */
+    public function createComment(string $message, string $user_id, string $ad_id): bool
+    {
+        $isOk = false;
+
+        $data = [
+            'message' => $message,
+        ];
+        $sql = 'INSERT INTO comments (message, user_id, ad_Id) VALUES (:message, :userId, :addId)';
+        $query = $this->connection->prepare($sql);
+        $isOk = $query->execute($data);
+
+        return $isOk;
+    }
+
+    /**
+     * Update a comment.
+     */
+    public function updateComment(int $id, string $message, string $user_id, string $ad_id): bool
+    {
+        $isOk = false;
+
+        $data = [
+            'id' => $id,
+            'message' => $message,
+            'userId' => $user_id,
+            'adId' => $ad_id,
+        ];
+        $sql = 'UPDATE comments SET message = :message, user_id = :userId, ad_Id = :adId WHERE id = :id;';
+        $query = $this->connection->prepare($sql);
+        $isOk = $query->execute($data);
+
+        return $isOk;
+    }
 }

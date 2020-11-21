@@ -3,7 +3,7 @@
 use App\Controllers\AdsController;
 use App\Entities\Session;
 
-require __DIR__ . '/vendor/autoload.php';
+require __DIR__ . './../vendor/autoload.php';
 
 $Session = new Session();
 

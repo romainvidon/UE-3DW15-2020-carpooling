@@ -6,8 +6,15 @@
 @import 'bootstrap/bootstrap';
 
 /* Main styles */
+
+*::selection {
+    background-color: rgb(255, 217, 222);
+    color: rgb(211, 83, 104)
+}
+
 body {
     font-family: "Roboto", sans-serif;
+    background-color: $light-gray;
 }
 
 .btn-add {

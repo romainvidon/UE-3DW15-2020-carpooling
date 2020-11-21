@@ -1,6 +1,10 @@
 /* Header styles */
 
-header {
+header#header {
+    h1 a {
+        color: $dark-gray;
+        text-decoration: none;
+    }
     a {
         &.active {
             color: $gray;

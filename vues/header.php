@@ -21,11 +21,11 @@
 
 <body>
 
-<header>
+<header id="header">
     <div class="container">
         <div class="row mt-3 pt-3">
             <div class="col-6">
-                <h1 class="text-uppercase">Carpooling CRUD</h1>
+                <h1 class="text-uppercase"><a href="index.php">Carpooling CRUD</a></h1>
             </div>
             <?php 
             
