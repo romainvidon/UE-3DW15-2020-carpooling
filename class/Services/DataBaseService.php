@@ -231,7 +231,7 @@ class DataBaseService
      {
          $adIds = [];
          $sql = 'SELECT id FROM ads';
-         $query = $this-	>connection->query($sql);
+         $query = $this->connection->query($sql);
          $results = $query->fetchAll(PDO::FETCH_ASSOC);
          if (!empty($results)){
             $adIds = $results;
@@ -334,7 +334,6 @@ class DataBaseService
 
         return $isOk;
     }
-<<<<<<< HEAD
 
     /*======================================================*/
 
@@ -375,6 +374,3 @@ class DataBaseService
         return $isOk;
     }
 }
-=======
-}
->>>>>>> f147b55b6facd8bfa8afbaf1c8514afa17fa54d1
