@@ -105,4 +105,28 @@ class CommentsController
 
         return $html;
     }
+
+    public function getCommentsOptions() : string
+    {
+        $html = "";
+        
+        // Get all ads :
+        $commentsService = new CommentsService();
+        $comments = $commentsService->getComments();
+        
+        // Get html :
+        foreach ($comments as $comment) {
+            $html .=
+                "<option value=\""
+                . $comment->getId()
+                . "\">"
+                . $comment->getId()
+                . " : "
+                . $comment->getMessage() . ' '
+                . "</option>";
+        }
+
+
+        return $html;
+    }
 }

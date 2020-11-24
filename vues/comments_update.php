@@ -8,6 +8,7 @@ require __DIR__ . '/../vendor/autoload.php';
 
 $controller = new CommentsController();
 echo $controller->updateComment();
+$commentsOptions = $controller->getCommentsOptions();
 
 $userController = new UsersController();
 $userOptions = $userController->getUsersOptions();
@@ -18,8 +19,8 @@ $adsOptions = $adsController->getAdsOptions();
 <a href="./">Retour</a>
 <p>Modification d'une commentaire</p>
 <form method="post" action="comments_update.php" name ="commentUpdateForm">
-    <label for="id">Id :</label>
-    <input type="number" name="id">
+    <label for="id">Commentaire :</label>
+    <select name="id" id="id"><?= $commentsOptions ?></select>
     <br />
     <label for="message">Message</label>
     <textarea name="message" id="message"></textarea>
