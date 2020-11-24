@@ -6,3 +6,4 @@ require __DIR__ . './../vendor/autoload.php';
 
 $controller = new CommentsController();
 echo $controller->getComments();
+?><a href="./">Retour</a>

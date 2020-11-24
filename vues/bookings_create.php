@@ -16,6 +16,7 @@ echo $controller->createBooking();
     <title>Document</title>
 </head>
 <body>
+    <a href="./">Retour</a>
     <p>Création d'une réservation</p>
     <form method="post" action="bookings_create.php" name ="bookingCreateForm">
         <label for="userId">Id de l'utilisateur pour qui vous réservez</label>

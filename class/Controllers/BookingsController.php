@@ -26,7 +26,7 @@ class BookingsController
                 $_POST['adId']
             );
             if ($isOk) {
-                $html = 'La réservation est créée avec succès.';
+                $html = 'La réservation a été créée avec succès.';
             } else {
                 $html = 'Erreur lors de la création de la réservation.';
             }

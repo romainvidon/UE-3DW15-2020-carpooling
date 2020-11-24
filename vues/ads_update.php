@@ -9,6 +9,7 @@ $controller = new AdsController();
 echo $controller->updateAd();
 
 ?>
+<a href="./">Retour</a>
 <p>Modification d'une d'une annonce</p>
 <form method="post" action="ads_update.php" name ="adUpdateForm">
     <label for="id">Id :</label>

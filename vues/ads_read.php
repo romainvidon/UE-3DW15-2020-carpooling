@@ -6,3 +6,5 @@ require __DIR__ . './../vendor/autoload.php';
 
 $controller = new AdsController();
 echo $controller->getAds();
+?>
+<a href="./">Retour</a>

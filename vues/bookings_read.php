@@ -6,3 +6,5 @@ require __DIR__ . './../vendor/autoload.php';
 
 $controller = new BookingsController();
 echo $controller->getBookings();
+?>
+<a href="./">Retour</a>

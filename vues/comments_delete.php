@@ -7,7 +7,7 @@ require __DIR__ . '/../vendor/autoload.php';
 $controller = new CommentsController();
 echo $controller->deleteComment();
 ?>
-
+<a href="./">Retour</a>
 <p>Supression d'un commentaire</p>
 <form method="post" action="comments_delete.php" name ="commentsDeleteForm">
     <label for="id">Id :</label>

@@ -7,7 +7,7 @@ require __DIR__ . './../vendor/autoload.php';
 $controller = new UsersController();
 echo $controller->createUser();
 ?>
-
+<a href="./">Retour</a>
 <p>Création d'un utilisateur</p>
 <form method="post" action="users_create.php" name ="userCreateForm">
     <label for="firstname">Prénom :</label>

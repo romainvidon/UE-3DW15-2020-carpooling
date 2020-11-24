@@ -7,7 +7,7 @@ require __DIR__ . './../vendor/autoload.php';
 $controller = new BookingsController();
 echo $controller->deleteBooking();
 ?>
-
+<a href="./">Retour</a>
 <p>Supression d'une réservation</p>
 <form method="post" action="bookings_delete.php" name ="bookingDeleteForm">
     <label for="id">Id :</label>
