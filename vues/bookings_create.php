@@ -2,6 +2,7 @@
 
 use App\Controllers\BookingsController;
 use App\Controllers\UsersController;
+use App\Controllers\AdsController;
 
 require __DIR__ . './../vendor/autoload.php';
 
@@ -10,6 +11,9 @@ echo $controller->createBooking();
 
 $userController = new UsersController();
 $userOptions = $userController->getUsersOptions();
+
+$adsController = new AdsController();
+$adsOptions = $adsController->getAdsOptions();
 ?>
 
 <!DOCTYPE html>
@@ -26,12 +30,13 @@ $userOptions = $userController->getUsersOptions();
         <label for="user_id">Utilisateur :</label>
         <select name="user_id" id="user_id"><?= $userOptions ?></select>
         <br />
+        <label for="ad_id">Annonce :</label>
+        <select name="ad_id" id="ad_id"><?= $adsOptions ?></select>
+        <br />
         <label for="date">Date et heure de réservation (jj-mm-aaaa hh:mm) :</label>
         <input type="datetime-local" name="date">
         <br />
-        <label for="adId">Id de l'annonce pour laquelle vous réservez :</label>
-        <input type="text" name="adId">
-        <br />
+
 
         <input type="submit" value="Créer une réservation">
     </form>

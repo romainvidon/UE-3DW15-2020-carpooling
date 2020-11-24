@@ -10,17 +10,20 @@ $controller = new AdsController();
 
 echo $controller->updateAd();
 
+$adsOptions = $controller->getAdsOptions();
+
 $userController = new UsersController();
 $userOptions = $userController->getUsersOptions();
 
 $carsController = new CarsController();
 $carsOptions = $carsController->getCarsOptions();
+
 ?>
 <a href="./">Retour</a>
 <p>Modification d'une d'une annonce</p>
 <form method="post" action="ads_update.php" name ="adUpdateForm">
-    <label for="id">Id :</label>
-    <input type="text" name="id">
+    <label for="id">Annonce :</label>
+    <select name="id" id="id"><?= $adsOptions ?></select>
     <br />
     <label for="title">Titre</label>
     <input type="text" name="title" id="title">
