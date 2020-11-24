@@ -17,7 +17,7 @@ class CommentsService
         if (empty($id)) {
             $isOk = $dataBaseService->createComment($message);
         } else {
-            $isOk = $dataBaseService->updateComment($id, $message;
+            $isOk = $dataBaseService->updateComment($id, $message);
         }
 
         return $isOk;

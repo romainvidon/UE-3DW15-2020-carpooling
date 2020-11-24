@@ -29,7 +29,7 @@ class Comments
 
     /**
      * Get the message id
-     * 
+     *
      */
     public function getMessage(): string
     {
@@ -38,13 +38,13 @@ class Comments
 
     /**
      * Set the message id
-     * 
+     *
      * @return self
      */
     public function setMessage(string $message): self
     {
         $this->message = $message;
-
+ 
         return $this;
     }
 
@@ -87,5 +87,4 @@ class Comments
 
         return $this;
     }
-
 }
