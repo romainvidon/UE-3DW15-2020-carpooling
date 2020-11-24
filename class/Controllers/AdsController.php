@@ -9,9 +9,9 @@ class AdsController
     /**
      * Return the html for the create action.
      */
-    public function createAd(): array
+    public function createAd(): string
     {
-        $result = [];
+        $html = "";
 
         // If the form have been submitted :
         if (isset($_POST['title']) &&
@@ -34,24 +34,23 @@ class AdsController
             }
 
             //for bootstrap flash message
-            $result = [$html, ($isOk ? 'success' : 'danger')];
+
         }
 
-        return $result;
+        return $html;
     }
 
     /**
      * Return the html for the read action.
      */
-    public function getAds(): array
+    public function getAds(): string
     {
-        /*$html = '';
+        $html = '';
 
-         Get all ads :
+
         $adsService = new AdsService();
         $ads = $adsService->getAds();
 
-         Get html :
         foreach ($ads as $ad) {
             $html .=
                 '#' . $ad->getId() . ' ' .
@@ -61,14 +60,14 @@ class AdsController
                 $ad->getCarId() . '<br />';
         }
 
-        return $html;*/
+        return $html;
 
 
         // Get all ads :
-        $adsService = new AdsService();
-        $ads = $adsService->getAds();
+        /* $adsService = new AdsService();
+        $ads = $adsService->getAds(); 
 
-        return $ads;
+        return $ads; */
     }
 
     /*

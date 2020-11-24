@@ -114,4 +114,29 @@ class UsersController
 
         return $html;
     }
+    
+
+
+    public function getUsersOptions(): string
+    {
+        $html = "";
+        
+        // Get all users :
+        $usersService = new UsersService();
+        $users = $usersService->getUsers();
+
+        // Get html :
+        foreach ($users as $user) {
+            $html .=
+                "<option value=\""
+                . $user->getId()
+                . "\">"
+                . $user->getFirstname() . ' '
+                . $user->getLastname() . ' '
+                . "</option>";
+        }
+
+
+        return $html;
+    }
 }

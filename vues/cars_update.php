@@ -1,11 +1,16 @@
 <?php
 
 use App\Controllers\CarsController;
+use App\Controllers\UsersController;
 
-require __DIR__ . '/vendor/autoload.php';
+require __DIR__ . './../vendor/autoload.php';
 
 $controller = new CarsController();
 echo $controller->updateCar();
+
+$userController = new UsersController();
+$userOptions = $userController->getUsersOptions();
+
 ?>
 
 <p>Modification d'une voiture</p>
@@ -16,8 +21,8 @@ echo $controller->updateCar();
     <label for="model">Modèle</label>
     <input type="text" name="model" id="model">
     <br />
-    <label for="user_id">Identifiant de l'utilisateur propriétaire :</label>
-    <input type="number" name="user_id" id="user_id">
+    <label for="user_id">utilisateur propriétaire :</label>
+    <select name="user_id" id="user_id"><?= $userOptions ?></select>
     <br />
     <input type="submit" value="Modifier une voiture">
 </form>

@@ -110,15 +110,17 @@ class DataBaseService
     /**
      * Create a car.
      */
-    public function createCar(string $model, string $user_id): bool
+    public function createCar(string $brand, string $model, string $maxslots, string $user_id): bool
     {
         $isOk = false;
 
         $data = [
+            'brand' => $brand,
             'model' => $model,
+            'maxslots' => $maxslots,
             'user_id' => $user_id
         ];
-        $sql = 'INSERT INTO cars(model, user_id) VALUES (:model, :user_id)';
+        $sql = 'INSERT INTO cars(brand, model, maxslots, user_id) VALUES (:brand, :model, :maxslots, :user_id)';
         $query = $this->connection->prepare($sql);
         $isOk = $query->execute($data);
 
