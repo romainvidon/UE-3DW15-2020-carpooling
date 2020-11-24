@@ -3,7 +3,6 @@
 namespace App\Controllers;
 
 use App\Services\CarsService;
-use App\Services\User;
 
 class CarsController
 {
@@ -125,18 +124,16 @@ class CarsController
         $carsService = new CarsService();
         $cars = $carsService->getCars();
         
-        // Get all users, to get their names
-        $usersService = new UserService();
-        $users = $usersService->getUsers();
-        
         // Get html :
         foreach ($cars as $car) {
             $html .=
                 "<option value=\""
                 . $car->getId()
                 . "\">"
-                . $car->getFirstname() . ' '
-                . $car->getLastname() . ' '
+                . $car->getId()
+                . " : "
+                . $car->getBrand() . ' '
+                . $car->getModel() . ' '
                 . "</option>";
         }
 
