@@ -60,7 +60,7 @@ class Booking
     }
 
     /**
-     * Get the value of add_id
+     * Get the value of ad_id
      */
     public function getAdId(): int
     {
@@ -68,7 +68,7 @@ class Booking
     }
 
     /**
-     * Set the value of add_id
+     * Set the value of ad_id
      */
     public function setAdId($ad_id): void
     {

@@ -348,12 +348,31 @@ class DataBaseService
 
         $data = [
             'message' => $message,
+            'user_id' => $user_id,
+            'ad_id' => $ad_id
         ];
-        $sql = 'INSERT INTO comments (message, user_id, ad_Id) VALUES (:message, :userId, :addId)';
+        $sql = 'INSERT INTO comments (message, user_id, ad_id) VALUES (:message, :user_id, :ad_id)';
         $query = $this->connection->prepare($sql);
         $isOk = $query->execute($data);
 
         return $isOk;
+    }
+
+    /**
+     * Return all comments.
+     */
+    public function getComments(): array
+    {
+        $comments = [];
+
+        $sql = 'SELECT * FROM comments';
+        $query = $this->connection->query($sql);
+        $results = $query->fetchAll(PDO::FETCH_ASSOC);
+        if (!empty($results)) {
+            $comments = $results;
+        }
+
+        return $comments;
     }
 
     /**
@@ -366,10 +385,27 @@ class DataBaseService
         $data = [
             'id' => $id,
             'message' => $message,
-            'userId' => $user_id,
-            'adId' => $ad_id,
+            'user_id' => $user_id,
+            'ad_id' => $ad_id,
         ];
-        $sql = 'UPDATE comments SET message = :message, user_id = :userId, ad_Id = :adId WHERE id = :id;';
+        $sql = 'UPDATE comments SET message = :message, user_id = :user_id, ad_id = :ad_id WHERE id = :id;';
+        $query = $this->connection->prepare($sql);
+        $isOk = $query->execute($data);
+
+        return $isOk;
+    }
+
+    /**
+     * Delete a comment.
+     */
+    public function deleteComment(int $id): bool
+    {
+        $isOk = false;
+
+        $data = [
+            'id' => $id,
+        ];
+        $sql = 'DELETE FROM comments WHERE id = :id;';
         $query = $this->connection->prepare($sql);
         $isOk = $query->execute($data);
 
