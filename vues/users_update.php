@@ -6,12 +6,15 @@ require __DIR__ . './../vendor/autoload.php';
 
 $controller = new UsersController();
 echo $controller->updateUser();
+
+$userController = new UsersController();
+$userOptions = $userController->getUsersOptions();
 ?>
 <a href="./">Retour</a>
 <p>Mise à jour d'un utilisateur</p>
 <form method="post" action="users_update.php" name ="userUpdateForm">
-    <label for="id">Id :</label>
-    <input type="text" name="id">
+    <label for="id">Utilisateur :</label>
+    <select name="id" id="id"><?= $userOptions ?></select>
     <br />
     <label for="firstname">Prénom :</label>
     <input type="text" name="firstname">

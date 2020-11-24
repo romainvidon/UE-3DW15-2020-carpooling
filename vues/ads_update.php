@@ -1,6 +1,7 @@
 <?php
 
 use App\Controllers\AdsController;
+use App\Controllers\UsersController;
 
 require __DIR__ . './../vendor/autoload.php';
 
@@ -8,6 +9,8 @@ $controller = new AdsController();
 
 echo $controller->updateAd();
 
+$userController = new UsersController();
+$userOptions = $userController->getUsersOptions();
 ?>
 <a href="./">Retour</a>
 <p>Modification d'une d'une annonce</p>
@@ -21,8 +24,8 @@ echo $controller->updateAd();
     <label for="description">Description</label>
     <textarea name="description" id="description"></textarea>
     <br />
-    <label for="user_id">Identifiant de l'utilisateur :</label>
-    <input type="number" name="user_id" id="user_id">
+    <label for="user_id">Utilisateur :</label>
+    <select name="user_id" id="user_id"><?= $userOptions ?></select>
     <br />
     <label for="car_id">Identifiant de la voiture :</label>
     <input type="number" name="car_id" id="car_id">

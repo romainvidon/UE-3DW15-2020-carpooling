@@ -131,6 +131,8 @@ class UsersController
                 "<option value=\""
                 . $user->getId()
                 . "\">"
+                . $user->getId()
+                . " - "
                 . $user->getFirstname() . ' '
                 . $user->getLastname() . ' '
                 . "</option>";

@@ -1,11 +1,15 @@
 <?php
 
 use App\Controllers\BookingsController;
+use App\Controllers\UsersController;
 
 require __DIR__ . './../vendor/autoload.php';
 
 $controller = new BookingsController();
 echo $controller->createBooking();
+
+$userController = new UsersController();
+$userOptions = $userController->getUsersOptions();
 ?>
 
 <!DOCTYPE html>
@@ -19,8 +23,8 @@ echo $controller->createBooking();
     <a href="./">Retour</a>
     <p>Création d'une réservation</p>
     <form method="post" action="bookings_create.php" name ="bookingCreateForm">
-        <label for="userId">Id de l'utilisateur pour qui vous réservez</label>
-        <input type="text" name="userId">
+        <label for="user_id">Utilisateur :</label>
+        <select name="user_id" id="user_id"><?= $userOptions ?></select>
         <br />
         <label for="date">Date et heure de réservation (jj-mm-aaaa hh:mm) :</label>
         <input type="datetime-local" name="date">
