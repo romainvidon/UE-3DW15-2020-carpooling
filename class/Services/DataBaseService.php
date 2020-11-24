@@ -227,7 +227,7 @@ class DataBaseService
 
     /*
       Select Ad Ids
-     
+
 
      public function getAdIds(): array
      {
@@ -238,9 +238,9 @@ class DataBaseService
          if (!empty($results)){
             $adIds = $results;
          }
-        
+
          return $adIds;
-         
+
      }
      */
 
@@ -261,7 +261,7 @@ class DataBaseService
         return $ads;
     }
 
-/*==================================================*/
+    /*==================================================*/
 
 
     /**
@@ -303,17 +303,17 @@ class DataBaseService
     /**
      * Update a booking.
      */
-    public function updateBooking(int $id, DateTime $reservationdate, int $user_id, int $add_id): bool
+    public function updateBooking(int $id, DateTime $reservationdate, int $user_id, int $ad_id): bool
     {
         $isOk = false;
 
         $data = [
             'id' => $id,
             'reservationdate' => $reservationdate->format("Y-m-d H:i"),
-            'userId' => $user_id,
-            'addId' => $add_id,
+            'user_id' => $user_id,
+            'ad_id' => $ad_id,
         ];
-        $sql = 'UPDATE bookings SET reservationdate = :reservationdate, userId = :userId, addId = :addId WHERE id = :id;';
+        $sql = 'UPDATE bookings SET reservationdate = :reservationdate, user_id = :user_id, ad_id = :ad_id WHERE id = :id;';
         $query = $this->connection->prepare($sql);
         $isOk = $query->execute($data);
 

@@ -5,21 +5,21 @@ namespace App\Services;
 use App\Entities\Booking;
 use DateTime;
 
-class BookingService
+class BookingsService
 {
     /**
      * Create or update a booking date.
      */
-    public function setBooking(?string $id, string $reservationdate, string $user_id, string $add_id): bool
+    public function setBooking(?string $id, string $reservationdate, string $user_id, string $ad_id): bool
     {
         $isOk = false;
 
         $dataBaseService = new DataBaseService();
         $reservationdateDateTime = new DateTime($reservationdate);
         if (empty($id)) {
-            $isOk = $dataBaseService->createBooking($reservationdateDateTime, $user_id, $add_id);
+            $isOk = $dataBaseService->createBooking($reservationdateDateTime, $user_id, $ad_id);
         } else {
-            $isOk = $dataBaseService->updateBooking($id, $reservationdateDateTime, $user_id, $add_id);
+            $isOk = $dataBaseService->updateBooking($id, $reservationdateDateTime, $user_id, $ad_id);
         }
         
         return $isOk;
@@ -39,8 +39,8 @@ class BookingService
                 $booking = new Booking();
                 $booking->setId($bookingDTO['id']);
                 $date = new DateTime($bookingDTO['reservationdate']);
-                $booking->getUserId($bookingDTO['userId']);
-                $booking->getAddId($bookingDTO['addId']);
+                $booking->setUserId($bookingDTO['user_id']);
+                $booking->setAdId($bookingDTO['ad_id']);
                 if ($date !== false) {
                     $booking->setReservationdate($date);
                 }
