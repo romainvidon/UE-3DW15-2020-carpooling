@@ -18,10 +18,16 @@ $userOptions = $userController->getUsersOptions();
     <label for="id">Id</label>
     <input type="number" name="id">
     <br />
+    <label for="brand">Marque</label>
+    <input type="text" name="brand" id="brand">
+    <br />
     <label for="model">Modèle</label>
     <input type="text" name="model" id="model">
     <br />
-    <label for="user_id">utilisateur propriétaire :</label>
+    <label for="maxslots">Nombres de places maximum</label>
+    <input type="number" name="maxslots" id="maxslots">
+    <br />
+    <label for="user_id">Propriétaire :</label>
     <select name="user_id" id="user_id"><?= $userOptions ?></select>
     <br />
     <input type="submit" value="Modifier une voiture">

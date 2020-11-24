@@ -9,15 +9,15 @@ class CarsService
     /**
      * Create or update a car.
      */
-    public function setCar(?string $id, string $model, string $user_id): bool
+    public function setCar(?string $id, string $brand, string $model, string $maxslots, string $user_id): bool
     {
         $isOk = false;
 
         $dataBaseService = new DataBaseService();
         if (empty($id)) {
-            $isOk = $dataBaseService->createCar($model, $user_id);
+            $isOk = $dataBaseService->createCar($brand, $model, $maxslots, $user_id);
         } else {
-            //* TODO : update a car
+            $isOk = $dataBaseService->updateCar($id, $brand, $model, $maxslots, $user_id);
         }
 
         return $isOk;
@@ -36,7 +36,9 @@ class CarsService
             foreach ($carsDTO as $carDTO) {
                 $car = new Car();
                 $car->setId($carDTO['id']);
+                $car->setBrand($carDTO['brand']);
                 $car->setModel($carDTO['model']);
+                $car->setMaxSlots($carDTO['maxslots']);
                 $car->setUserId($carDTO['user_id']);
                 $cars[] = $car;
             }

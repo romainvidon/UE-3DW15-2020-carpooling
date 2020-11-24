@@ -144,6 +144,44 @@ class DataBaseService
         return $cars;
     }
 
+    /**
+     * Update a car.
+     */
+    public function updateCar(string $id, string $brand, string $model, string $maxslots, string $user_id): bool
+    {
+        $isOk = false;
+
+        $data = [
+            'id' => $id,
+            'brand' => $brand,
+            'model' => $model,
+            'maxslots' => $maxslots,
+            'user_id' => $user_id
+        ];
+        $sql = 'UPDATE cars SET brand = :brand, model = :model, maxslots = :maxslots, user_id = :user_id WHERE id = :id';
+        $query = $this->connection->prepare($sql);
+        $isOk = $query->execute($data);
+
+        return $isOk;
+    }
+
+    /**
+    * Delete a car.
+    */
+    public function deleteCar(string $id): bool
+    {
+        $isOk = false;
+
+        $data = [
+            'id' => $id,
+        ];
+        $sql = 'DELETE FROM cars WHERE id = :id';
+        $query = $this->connection->prepare($sql);
+        $isOk = $query->execute($data);
+
+        return $isOk;
+    }
+
     /*===================================================*/
 
     /**
@@ -167,6 +205,7 @@ class DataBaseService
     }
 
     /**
+
      * Update an ad.
      */
     public function updateAd(string $id, string $title, string $description, string $user_id, string $car_id): bool
@@ -208,44 +247,7 @@ class DataBaseService
     }
 
     /**
-     * Delete obligations from an ad (bookings and reservations)
-     */
-    public function deleteAdObligations(string $adId): bool
-    {
-        $isOk = false;
-
-        $data = [
-            'ad_id' => $adId
-        ];
-
-        $sql = 'DELETE * FROM bookings, reservations WHERE ad_id = :adId;';
-        $query = $this->connection->prepare($sql);
-        $isOk = $query->execute($data);
-
-        return $isOk;
-    }
-
-    /*
-      Select Ad Ids
-
-
-     public function getAdIds(): array
-     {
-         $adIds = [];
-         $sql = 'SELECT id FROM ads';
-         $query = $this->connection->query($sql);
-         $results = $query->fetchAll(PDO::FETCH_ASSOC);
-         if (!empty($results)){
-            $adIds = $results;
-         }
-
-         return $adIds;
-
-     }
-     */
-
-    /**
-     * Return all cars.
+     * Return all ads.
      */
     public function getAds(): array
     {
