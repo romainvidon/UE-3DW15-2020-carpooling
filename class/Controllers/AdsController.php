@@ -115,4 +115,28 @@ class AdsController
         
         return $html;
     }
+
+    public function getAdsOptions() : string
+    {
+        $html = "";
+        
+        // Get all ads :
+        $adsService = new AdsService();
+        $ads = $adsService->getAds();
+        
+        // Get html :
+        foreach ($ads as $ad) {
+            $html .=
+                "<option value=\""
+                . $ad->getId()
+                . "\">"
+                . $ad->getId()
+                . " : "
+                . $ad->getTitle() . ' '
+                . "</option>";
+        }
+
+
+        return $html;
+    }
 }

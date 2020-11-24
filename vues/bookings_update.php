@@ -1,11 +1,20 @@
 <?php
 
 use App\Controllers\BookingsController;
+use App\Controllers\UsersController;
+use App\Controllers\AdsController;
 
 require __DIR__ . './../vendor/autoload.php';
 
 $controller = new BookingsController();
 echo $controller->updateBooking();
+$bookingsOptions = $controller->getBookingsOptions();
+
+$userController = new UsersController();
+$userOptions = $userController->getUsersOptions();
+
+$adsController = new AdsController();
+$adsOptions = $adsController->getAdsOptions();
 ?>
 
 <!DOCTYPE html>
@@ -16,21 +25,21 @@ echo $controller->updateBooking();
     <title>Document</title>
 </head>
 <body>
+    <a href="./">Retour</a>
     <p>Modification d'une réservation</p>
     <form method="post" action="bookings_update.php" name ="bookingCreateForm">
-        <label for="id">Id</label>
-        <input type="number" name="id">
+        <label for="id">Réservation :</label>
+        <select name="id" id="id"><?= $bookingsOptions ?></select>
         <br />
-        <label for="userId">Id de l'utilisateur </label>
-        <input type="text" name="user_id">
+        <label for="user_id">Utilisateur :</label>
+        <select name="user_id" id="user_id"><?= $userOptions ?></select>
+        <br />
+        <label for="ad_id">Annonce :</label>
+        <select name="ad_id" id="ad_id"><?= $adsOptions ?></select>
         <br />
         <label for="date">Date et heure de réservation (jj-mm-aaaa hh:mm) :</label>
         <input type="datetime-local" name="date">
         <br />
-        <label for="adId">Id de l'annonce :</label>
-        <input type="text" name="ad_id">
-        <br />
-
         <input type="submit" value="Modifier une réservation">
     </form>
 </body>

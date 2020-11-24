@@ -7,6 +7,7 @@ require __DIR__ . './../vendor/autoload.php';
 
 $controller = new CarsController();
 echo $controller->updateCar();
+$carsOptions = $controller->getCarsOptions();
 
 $userController = new UsersController();
 $userOptions = $userController->getUsersOptions();
@@ -15,8 +16,8 @@ $userOptions = $userController->getUsersOptions();
 <a href="./">Retour</a>
 <p>Modification d'une voiture</p>
 <form method="post" action="cars_update.php" name ="carUpdateForm">
-    <label for="id">Id</label>
-    <input type="number" name="id">
+    <label for="id">Voiture :</label>
+    <select name="id" id="id"><?= $carsOptions ?></select>
     <br />
     <label for="brand">Marque</label>
     <input type="text" name="brand" id="brand">

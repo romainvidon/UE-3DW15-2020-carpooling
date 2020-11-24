@@ -1,26 +1,35 @@
 <?php
 
 use App\Controllers\CommentsController;
+use App\Controllers\UsersController;
+use App\Controllers\AdsController;
 
 require __DIR__ . '/../vendor/autoload.php';
 
 $controller = new CommentsController();
 echo $controller->updateComment();
+$commentsOptions = $controller->getCommentsOptions();
+
+$userController = new UsersController();
+$userOptions = $userController->getUsersOptions();
+
+$adsController = new AdsController();
+$adsOptions = $adsController->getAdsOptions();
 ?>
 <a href="./">Retour</a>
 <p>Modification d'une commentaire</p>
 <form method="post" action="comments_update.php" name ="commentUpdateForm">
-    <label for="id">Id :</label>
-    <input type="number" name="id">
+    <label for="id">Commentaire :</label>
+    <select name="id" id="id"><?= $commentsOptions ?></select>
     <br />
     <label for="message">Message</label>
     <textarea name="message" id="message"></textarea>
     <br />
-    <label for="user_id">Identifiant de l'utilisateur :</label>
-    <input type="number" name="user_id" id="user_id">
+    <label for="user_id">Utilisateur :</label>
+    <select name="user_id" id="user_id"><?= $userOptions ?></select>
     <br />
-    <label for="ad_id">Identifiant de l'annonce :</label>
-    <input type="number" name="ad_id" id="ad_id">
+    <label for="ad_id">Annonce :</label>
+    <select name="ad_id" id="ad_id"><?= $adsOptions ?></select>
     <br />
     <input type="submit" value="Modifier un commentaire">
 </form>
