@@ -2,22 +2,22 @@
 
 namespace App\Services;
 
-use App\Entities\Comments;
+use App\Entities\Comment;
 
 class CommentsService
 {
     /**
      * Create or update a comment.
      */
-    public function createComment(?string $id, string $message): bool
+    public function setComment(?string $id, string $message, string $user_id, string $ad_id): bool
     {
         $isOk = false;
 
         $dataBaseService = new DataBaseService();
         if (empty($id)) {
-            $isOk = $dataBaseService->createComment($message);
+            $isOk = $dataBaseService->createComment($message, $user_id, $ad_id);
         } else {
-            $isOk = $dataBaseService->updateComment($id, $message;
+            $isOk = $dataBaseService->updateComment($id, $message, $user_id, $ad_id);
         }
 
         return $isOk;
@@ -26,39 +26,35 @@ class CommentsService
     /**
      * Return all users.
      */
-    public function getUsers(): array
+    public function getComments(): array
     {
-        $users = [];
+        $comments = [];
 
         $dataBaseService = new DataBaseService();
-        $usersDTO = $dataBaseService->getUsers();
-        if (!empty($usersDTO)) {
-            foreach ($usersDTO as $userDTO) {
-                $user = new User();
-                $user->setId($userDTO['id']);
-                $user->setFirstname($userDTO['firstname']);
-                $user->setLastname($userDTO['lastname']);
-                $user->setEmail($userDTO['email']);
-                $date = new DateTime($userDTO['birthday']);
-                if ($date !== false) {
-                    $user->setbirthday($date);
-                }
-                $users[] = $user;
+        $commentDTO = $dataBaseService->getComments();
+        if (!empty($commentDTO)) {
+            foreach ($commentDTO as $commentDTO) {
+                $comment = new Comment();
+                $comment->setId($commentDTO['id']);
+                $comment->setMessage($commentDTO['message']);
+                $comment->setUserId($commentDTO['user_id']);
+                $comment->setAdId($commentDTO['ad_id']);
+                $comments[] = $comment;
             }
         }
 
-        return $users;
+        return $comments;
     }
 
     /**
-     * Delete an user.
+     * Delete a comment.
      */
-    public function deleteUser(string $id): bool
+    public function deleteComment(string $id): bool
     {
         $isOk = false;
 
         $dataBaseService = new DataBaseService();
-        $isOk = $dataBaseService->deleteUser($id);
+        $isOk = $dataBaseService->deleteComment($id);
 
         return $isOk;
     }

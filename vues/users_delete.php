@@ -7,7 +7,7 @@ require __DIR__ . './../vendor/autoload.php';
 $controller = new UsersController();
 echo $controller->deleteUser();
 ?>
-
+<a href="./">Retour</a>
 <p>Supression d'un utilisateur</p>
 <form method="post" action="users_delete.php" name ="userDeleteForm">
     <label for="id">Id :</label>

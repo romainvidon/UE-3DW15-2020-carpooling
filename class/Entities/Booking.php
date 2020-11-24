@@ -9,7 +9,7 @@ class Booking
     private $id;
     private $reservationdate;
     private $user_id;
-    private $add_id;
+    private $ad_id;
 
     /**
      * Get the value of id
@@ -25,7 +25,6 @@ class Booking
     public function setId($id): void
     {
         $this->id = $id;
-
     }
 
     /**
@@ -61,19 +60,18 @@ class Booking
     }
 
     /**
-     * Get the value of add_id
+     * Get the value of ad_id
      */
-    public function getAddId(): int
+    public function getAdId(): int
     {
-        return $this->add_id;
+        return $this->ad_id;
     }
 
     /**
-     * Set the value of add_id
+     * Set the value of ad_id
      */
-    public function setAddId($add_id): void
+    public function setAdId($ad_id): void
     {
-        $this->add_id = $add_id;
+        $this->ad_id = $ad_id;
     }
-
 }

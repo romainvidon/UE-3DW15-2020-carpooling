@@ -6,3 +6,4 @@ require __DIR__ . './../vendor/autoload.php';
 
 $controller = new UsersController();
 echo $controller->getUsers();
+?><a href="./">Retour</a>

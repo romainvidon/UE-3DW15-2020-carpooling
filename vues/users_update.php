@@ -7,7 +7,7 @@ require __DIR__ . './../vendor/autoload.php';
 $controller = new UsersController();
 echo $controller->updateUser();
 ?>
-
+<a href="./">Retour</a>
 <p>Mise à jour d'un utilisateur</p>
 <form method="post" action="users_update.php" name ="userUpdateForm">
     <label for="id">Id :</label>

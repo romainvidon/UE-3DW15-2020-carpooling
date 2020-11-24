@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Services\CarsService;
+use App\Services\User;
 
 class CarsController
 {
@@ -14,13 +15,17 @@ class CarsController
         $html = '';
 
         // If the form have been submitted :
-        if (isset($_POST['model']) &&
+        if (isset($_POST['brand']) &&
+            isset($_POST['model']) &&
+            isset($_POST['maxslots']) &&
             isset($_POST['user_id'])) {
             // Create the car :
             $carsService = new CarsService();
             $isOk = $carsService->setCar(
                 null,
+                $_POST['brand'],
                 $_POST['model'],
+                $_POST['maxslots'],
                 $_POST['user_id']
             );
             if ($isOk) {
@@ -48,7 +53,9 @@ class CarsController
         foreach ($cars as $car) {
             $html .=
                 '#' . $car->getId() . ' ' .
+                $car->getBrand() . ' ' .
                 $car->getModel() . ' ' .
+                $car->getMaxSlots() . ' ' .
                 $car->getUserId() . '<br />';
         }
 
@@ -65,14 +72,17 @@ class CarsController
         $html = '';
 
         // If the form have been submitted :
-        if (isset($_POST['id']) &&
+        if (isset($_POST['brand']) &&
             isset($_POST['model']) &&
+            isset($_POST['maxslots']) &&
             isset($_POST['user_id'])) {
             // Update the car :
             $carsService = new CarsService();
             $isOk = $carsService->setCar(
                 $_POST['id'],
+                $_POST['brand'],
                 $_POST['model'],
+                $_POST['maxslots'],
                 $_POST['user_id']
             );
             if ($isOk) {
@@ -103,6 +113,33 @@ class CarsController
                 $html = 'Erreur lors de la supression de la voiture.';
             }
         }
+
+        return $html;
+    }
+
+    public function getCarsOptions() : string
+    {
+        $html = "";
+        
+        // Get all cars :
+        $carsService = new CarsService();
+        $cars = $carsService->getCars();
+        
+        // Get all users, to get their names
+        $usersService = new UserService();
+        $users = $usersService->getUsers();
+        
+        // Get html :
+        foreach ($cars as $car) {
+            $html .=
+                "<option value=\""
+                . $car->getId()
+                . "\">"
+                . $car->getFirstname() . ' '
+                . $car->getLastname() . ' '
+                . "</option>";
+        }
+
 
         return $html;
     }
