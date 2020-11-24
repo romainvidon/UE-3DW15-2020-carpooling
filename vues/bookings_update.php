@@ -8,6 +8,7 @@ require __DIR__ . './../vendor/autoload.php';
 
 $controller = new BookingsController();
 echo $controller->updateBooking();
+$bookingsOptions = $controller->getBookingsOptions();
 
 $userController = new UsersController();
 $userOptions = $userController->getUsersOptions();
@@ -27,8 +28,8 @@ $adsOptions = $adsController->getAdsOptions();
     <a href="./">Retour</a>
     <p>Modification d'une réservation</p>
     <form method="post" action="bookings_update.php" name ="bookingCreateForm">
-        <label for="id">Id</label>
-        <input type="number" name="id">
+        <label for="id">Réservation :</label>
+        <select name="id" id="id"><?= $bookingsOptions ?></select>
         <br />
         <label for="user_id">Utilisateur :</label>
         <select name="user_id" id="user_id"><?= $userOptions ?></select>

@@ -106,4 +106,30 @@ class BookingsController
 
         return $html;
     }
+
+    public function getBookingsOptions() : string
+    {
+        $html = "";
+        
+        // Get all ads :
+        $bookingsService = new BookingsService();
+        $bookings = $bookingsService->getBookings();
+        
+        // Get html :
+        foreach ($bookings as $booking) {
+            $html .=
+                "<option value=\""
+                . $booking->getId()
+                . "\">"
+                . $booking->getId()
+                . " : "
+                . $booking->getAdId()
+                . " // "
+                . $booking->getReservationdate()->format("d/m/Y H:i") . ' '
+                . "</option>";
+        }
+
+
+        return $html;
+    }
 }
