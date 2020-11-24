@@ -1,13 +1,12 @@
 <?php
 
 use App\Controllers\AdsController;
-use App\Entities\Session;
 
 require __DIR__ . './../vendor/autoload.php';
 
 $controller = new AdsController();
 
-$result = $controller->updateAd();
+echo $controller->updateAd();
 
 ?>
 <p>Modification d'une d'une annonce</p>

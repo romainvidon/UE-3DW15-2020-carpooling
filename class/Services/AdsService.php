@@ -49,7 +49,7 @@ class AdsService
 
     /*
      * Return the Ad Ids
-     
+
 
     public function getAdIds(): array
     {
@@ -78,10 +78,8 @@ class AdsService
         $isOk = false;
 
         $dataBaseService = new DataBaseService();
-        $isOk = $dataBaseService->deleteAdObligations($id);
         $isOk = $dataBaseService->deleteAd($id);
 
         return $isOk;
     }
-
 }

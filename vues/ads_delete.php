@@ -1,18 +1,17 @@
 <?php
 
 use App\Controllers\AdsController;
-use App\Entities\Session;
 
-require __DIR__ . './../vendor/autoload.php';
-
-$Session = new Session();
+require __DIR__ . '/../vendor/autoload.php';
 
 $controller = new AdsController();
-
-$result = $controller->deleteAd();
-
-$Session->setFlash($result[0], $result[1]); //text, color
-
-header('location: annonces.php');
+echo $controller->deleteAd();
 ?>
-
+<a href="./">Retour</a>
+<p>Supression d'une annonce</p>
+<form method="post" action="ads_delete.php" name ="adDeleteForm">
+    <label for="id">Id :</label>
+    <input type="text" name="id">
+    <br />
+    <input type="submit" value="Supprimer une annonce">
+</form>

@@ -34,7 +34,6 @@ class AdsController
             }
 
             //for bootstrap flash message
-
         }
 
         return $html;
@@ -61,39 +60,14 @@ class AdsController
         }
 
         return $html;
-
-
-        // Get all ads :
-        /* $adsService = new AdsService();
-        $ads = $adsService->getAds(); 
-
-        return $ads; */
     }
-
-    /*
-     * Get an Ad Id 
-     
-
-     public function getAdId():string
-     {
-         $id = '';
-
-         $ad = new AdsService;
-         $adId = $ad->getAdIds();
-         foreach ($adId as $id){
-             $id = $id->setAdId();
-         }
-         var_dump($id); die();
-         return $id;
-     }*/
 
     /**
      * Update the ad.
      */
-    public function updateAd(): array
+    public function updateAd(): string
     {
-
-        $result = [];
+        $html = "";
 
         // If the form have been submitted :
         if (isset($_POST['id']) &&
@@ -115,21 +89,17 @@ class AdsController
             } else {
                 $html = 'Erreur lors de la mise à jour de l\'annonce.';
             }
-
-            //for bootstrap flash message
-            $result = [$html, ($isOk ? "success" : "danger")];
         }
 
-        return $result;
+        return $html;
     }
 
     /**
      * Delete an ad.
      */
-    public function deleteAd()
+    public function deleteAd() : string
     {
-
-        $result = [];
+        $html = "";
 
         // If the form have been submitted :
         if (isset($_POST['id'])) {
@@ -141,10 +111,8 @@ class AdsController
             } else {
                 $html = 'Erreur lors de la supression de l\'annonce.';
             }
-            //for bootstrap flash message
-            $result = [$html, ($isOk ? "success" : "danger")];
         }
         
-        return $result;
+        return $html;
     }
 }
